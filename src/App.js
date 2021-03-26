@@ -7,15 +7,16 @@ import './App.css';
 function App() {
 
   const [second, setSecond] = useState('00')
-  const [minute, setMinute] = useState('00')
+  const [minute, setMinute] = useState(5)
   const [isActive, setIsActive] = useState(true)
-  const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(300)
 
   const resetTimer = () => {
     setIsActive(false)
-    setCounter(0)
+    setCounter(300)
     setSecond('00')
-    setMinute('00')
+    setMinute('05')
+    setIsActive(true)
   }
 
 
@@ -39,7 +40,7 @@ function App() {
         setSecond(computedSecond)
         setMinute(computedMinute)
 
-        setCounter((counter) => counter + 1)
+        setCounter((counter) => counter - 1)
       }, 1000)
     }
 
