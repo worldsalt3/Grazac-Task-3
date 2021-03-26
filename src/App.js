@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Pausebutton from '../src/Components/Pause-button'
 import Resumebutton from '../src/Components/Resume-button'
+import Resetbutton from '../src/Components/Reset-button'
 import './App.css';
 
 function App() {
@@ -10,6 +11,42 @@ function App() {
   const [isActive, setIsActive] = useState(true)
   const [counter, setCounter] = useState(0)
 
+  const resetTimer = () => {
+    setIsActive(false)
+    setCounter(0)
+    setSecond('00')
+    setMinute('00')
+  }
+
+
+  useEffect(() => {
+    let intervalId
+
+    if (isActive) {
+      intervalId = setInterval(() => {
+        const secondCounter = counter % 60
+        const minuteCounter = Math.floor(counter / 60)
+
+        const computedSecond =
+          String(secondCounter).length === 1
+            ? `0${secondCounter}`
+            : secondCounter
+        const computedMinute =
+          String(minuteCounter).length === 1
+            ? `0${minuteCounter}`
+            : minuteCounter
+
+        setSecond(computedSecond)
+        setMinute(computedMinute)
+
+        setCounter((counter) => counter + 1)
+      }, 1000)
+    }
+
+    return () => clearInterval(intervalId)
+  }, [isActive, counter])
+
+
   return (
     <div className='App'>
       <div className='time'>
@@ -17,8 +54,9 @@ function App() {
         <span className='seconds'>{second}</span>
       </div>
       <div className='button'>
-        <Pausebutton counter={counter} setCounter={setCounter} setMinute={setMinute} setSecond={setSecond} isActive={isActive} setIsActive={setIsActive}/>
+        <Pausebutton setIsActive={setIsActive}/>
         <Resumebutton setIsActive={setIsActive}/>
+        <Resetbutton resetTimer={resetTimer} />
       </div>
     </div>
   )
