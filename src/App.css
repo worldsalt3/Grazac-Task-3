@@ -32,10 +32,12 @@ body {
 .resume {
   background: #3ed927;
   color: white;
+  font-weight: bolder;
 }
 
 .pause {
-  background: #e4e446;
+  background: #929210;
+  color: white;
 }
 
 .reset {
