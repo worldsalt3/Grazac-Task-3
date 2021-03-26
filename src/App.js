@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Pausebutton from '../src/Components/Pause-button'
+import Resumebutton from '../src/Components/Resume-button'
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       </div>
       <div className='button'>
         <Pausebutton counter={counter} setCounter={setCounter} setMinute={setMinute} setSecond={setSecond} isActive={isActive} setIsActive={setIsActive}/>
+        <Resumebutton setIsActive={setIsActive}/>
       </div>
     </div>
   )
