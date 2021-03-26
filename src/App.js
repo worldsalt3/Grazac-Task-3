@@ -7,7 +7,7 @@ import './App.css';
 function App() {
 
   const [second, setSecond] = useState('00')
-  const [minute, setMinute] = useState(5)
+  const [minute, setMinute] = useState('05')
   const [isActive, setIsActive] = useState(true)
   const [counter, setCounter] = useState(300)
 
